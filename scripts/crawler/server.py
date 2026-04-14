@@ -11,7 +11,7 @@ REST endpoints:
 
 Env vars:
   GITHUB_TOKEN          — required, GitHub API token
-  GIT_REMOTE_URL        — spec repo clone URL (default: https://github.com/openleap-io/io.openleap.spec.git)
+  GIT_REMOTE_URL        — spec repo clone URL (default: https://github.com/openleap-io/io.openleap.dev.hub.git)
   GIT_USER_NAME         — git commit author name (default: crawl-bot)
   GIT_USER_EMAIL        — git commit author email (default: crawl-bot@openleap.io)
   DEFAULT_CRON          — initial cron schedule (default: 0 6 * * *  = daily 6 AM UTC)
@@ -38,7 +38,7 @@ from flask import Flask, jsonify, request
 # ---------------------------------------------------------------------------
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 GIT_REMOTE_URL = os.environ.get(
-    "GIT_REMOTE_URL", "https://github.com/openleap-io/io.openleap.spec.git"
+    "GIT_REMOTE_URL", "https://github.com/openleap-io/io.openleap.dev.hub.git"
 )
 GIT_USER_NAME = os.environ.get("GIT_USER_NAME", "crawl-bot")
 GIT_USER_EMAIL = os.environ.get("GIT_USER_EMAIL", "crawl-bot@openleap.io")
@@ -129,7 +129,7 @@ def commit_and_push() -> bool:
         return False
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    git("add", "landscape/implementation-status.json")
+    git("add", "landscape/impl-status.json")
     git("commit", "-m", f"crawl: update implementation-status.json ({today})")
     log.info("Pushing to origin/main...")
     git("push", "origin", "main")

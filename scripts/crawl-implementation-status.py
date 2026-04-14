@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Crawl OpenLeap GitHub repos tagged 'backend-service' and write
-landscape/implementation-status.json.
+landscape/impl-status.json (in io.openleap.dev.hub).
 
 Tracks activity status, spec/qa folder presence, and platform dependency
 versions. Preserves QA-owned fields (ADR compliance) set by a separate process.
@@ -33,7 +33,7 @@ import requests
 # Config
 # ---------------------------------------------------------------------------
 ORG = "openleap-io"
-REGISTRY_PATH = Path("landscape/implementation-status.json")
+REGISTRY_PATH = Path("landscape/impl-status.json")  # Note: this file lives in io.openleap.dev.hub
 BACKEND_TOPIC = "backend-service"
 TODAY = date.today().isoformat()
 

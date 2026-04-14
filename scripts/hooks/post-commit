@@ -7,7 +7,7 @@
 # entry so the dashboard surfaces a staleness warning.
 #
 
-STATUS_FILE="landscape/implementation-status.json"
+STATUS_FILE="landscape/impl-status.json"  # Note: lives in io.openleap.dev.hub
 
 # Skip if implementation-status.json doesn't exist
 [ -f "$STATUS_FILE" ] || exit 0

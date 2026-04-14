@@ -233,8 +233,8 @@ Co-Authored-By: Paperclip <noreply@paperclip.ing>"
 Write a comprehensive `README.md` for the microservice. Use the template from the platform:
 
 ```bash
-git clone https://github.com/openleap-io/io.openleap.spec /tmp/spec-repo
-cat /tmp/spec-repo/concepts/templates/platform/readme-microservice.md
+git clone https://github.com/openleap-io/io.openleap.dev.spec /tmp/spec-repo
+cat /tmp/spec-repo/https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/templates/platform/readme-microservice.md
 ```
 
 Read this template and fill it out completely based on your implementation.

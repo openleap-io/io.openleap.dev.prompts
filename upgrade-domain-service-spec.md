@@ -4,9 +4,9 @@
 > **Version:** 1.0.0
 > **Output:** Updated spec file, `status/spec-changelog.md`, `status/spec-open-questions.md`
 > **Prerequisites:** Target spec file path (e.g., `spec/T3_Domains/SD/sd_shp-spec.md`)
-> **Template:** `concepts/templates/platform/domain/domain-service-spec.md` (TPL-SVC v1.0.0)
+> **Template:** `https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/templates/platform/domain/domain-service-spec.md` (TPL-SVC v1.0.0)
 > **Dev Guidelines:** `io.openleap.dev.guidelines` v4.1.0+ (required for ADR-067 extensibility, ADR-011 custom fields)
-> **Governance:** `concepts/governance/template-governance.md` (GOV-TPL-001, §6)
+> **Governance:** `https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/governance/template-governance.md` (GOV-TPL-001, §6)
 
 ---
 
@@ -58,9 +58,9 @@ The following ADRs from `io.openleap.dev.guidelines` constrain how content shoul
 
 Read the following files into context before making any changes:
 
-1. **Template:** `concepts/templates/platform/domain/domain-service-spec.md`
+1. **Template:** `https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/templates/platform/domain/domain-service-spec.md`
 2. **Target spec:** `{SPEC_FILE}`
-3. **Template registry:** `concepts/templates/template-registry.json` (for current TPL-SVC version)
+3. **Template registry:** `https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/templates/template-registry.json` (for current TPL-SVC version)
 4. **Suite spec:** Derive from the target spec's `Suite` metadata — e.g., if Suite is `sd`, read `spec/T3_Domains/SD/_sd_suite.md`
 5. **Related specs:** Read any specs referenced in the target's §0.4 Related Documents
 

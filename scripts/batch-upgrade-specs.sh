@@ -14,7 +14,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-PROMPT_FILE="$REPO_ROOT/prompts/upgrade-domain-service-spec.md"
+PROMPT_FILE="$REPO_ROOT/upgrade-domain-service-spec.md"
 LOG_DIR="$REPO_ROOT/scripts/upgrade-logs"
 SKIP_FILE="$REPO_ROOT/scripts/upgrade-skip.txt"
 
@@ -56,7 +56,8 @@ mkdir -p "$LOG_DIR"
 
 # Collect all domain service spec files (exclude feature specs, suite specs, product specs)
 mapfile -t ALL_SPECS < <(
-  find "$REPO_ROOT/spec" -name '*-spec.md' \
+  # NOTE: specs now live in io.openleap.dev.spec repo
+    # find "$REPO_ROOT/spec" -name '*-spec.md' \
     -not -name '*feature-spec*' \
     -not -name '*suite*' \
     -not -name '*product-spec*' \

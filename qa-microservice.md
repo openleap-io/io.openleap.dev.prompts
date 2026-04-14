@@ -2,8 +2,8 @@
 
 > **Purpose:** Perform a comprehensive quality analysis of an existing OpenLeap microservice implementation
 > **Version:** 2.0.0
-> **Output:** QA reports in `QA/` folder of the target repo + updated `landscape/implementation-status.json` in `io.openleap.spec`
-> **Prerequisites:** `gh` CLI authenticated, access to `openleap-io` GitHub org; `io.openleap.spec` checked out at `/tmp/spec-repo`
+> **Output:** QA reports in `QA/` folder of the target repo + updated `landscape/impl-status.json` in [dev.hub](https://github.com/openleap-io/io.openleap.dev.hub) in `io.openleap.dev.spec`
+> **Prerequisites:** `gh` CLI authenticated, access to `openleap-io` GitHub org; `io.openleap.dev.spec` checked out at `/tmp/spec-repo`
 
 ---
 
@@ -12,7 +12,7 @@
 | Variable | Description | Example |
 |----------|-------------|---------|
 | `REPO_ID` | Repository name (without org prefix) | `io.openleap.sd.ord` |
-| `SPEC_FILE` | Path to spec in `io.openleap.spec` | `spec/T3_Domains/SD/sd_ord-spec.md` |
+| `SPEC_FILE` | Path to spec in `io.openleap.dev.spec` | `spec/T3_Domains/SD/sd_ord-spec.md` |
 | `GUIDELINES_REF` | Git ref for `io.openleap.dev.guidelines` | `main` |
 
 ---
@@ -30,7 +30,7 @@ git clone https://github.com/openleap-io/$REPO_ID /tmp/$REPO_ID
 ```bash
 git clone --branch ${GUIDELINES_REF:-main} --single-branch \
   https://github.com/openleap-io/io.openleap.dev.guidelines /tmp/devguidelines
-git clone https://github.com/openleap-io/io.openleap.spec /tmp/spec-repo
+git clone https://github.com/openleap-io/io.openleap.dev.spec /tmp/spec-repo
 ```
 
 ### 1.3 Read the Specification

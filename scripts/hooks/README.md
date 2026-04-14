@@ -9,7 +9,7 @@ chmod +x .git/hooks/*
 
 ## post-commit
 
-Detects when spec files tracked by `landscape/implementation-status.json` are modified in a commit but the status file itself is not updated. Injects an `attentionRequired` entry into the JSON so the dashboard surfaces a staleness warning.
+Detects when spec files tracked by `landscape/impl-status.json` in [dev.hub](https://github.com/openleap-io/io.openleap.dev.hub) are modified in a commit but the status file itself is not updated. Injects an `attentionRequired` entry into the JSON so the dashboard surfaces a staleness warning.
 
 **Behavior:**
 - Spec changed, status NOT updated → adds `attentionRequired[].type = "dashboard-stale"` warning

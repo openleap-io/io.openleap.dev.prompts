@@ -2,19 +2,19 @@
 
 > **Purpose:** Crawl all OpenLeap GitHub repositories to determine implementation status and spec version sync
 > **Version:** 1.0.0
-> **Output:** Updated `landscape/implementation-status.json`
+> **Output:** Updated `landscape/impl-status.json` in [dev.hub](https://github.com/openleap-io/io.openleap.dev.hub)
 > **Prerequisites:** `gh` CLI authenticated with access to the `openleap-io` GitHub organization
-> **Governance:** `concepts/governance/template-governance.md` (GOV-TPL-001)
+> **Governance:** `https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/governance/template-governance.md` (GOV-TPL-001)
 
 ---
 
 ## Instructions
 
-Update `landscape/implementation-status.json` by crawling the `openleap-io` GitHub organization to determine which specs have been implemented and whether their versions are in sync.
+Update `landscape/impl-status.json` in [dev.hub](https://github.com/openleap-io/io.openleap.dev.hub) by crawling the `openleap-io` GitHub organization to determine which specs have been implemented and whether their versions are in sync.
 
 ### Step 1: Load Current Registry
 
-Read `landscape/implementation-status.json` to get the current list of tracked specs and their known repository mappings.
+Read `landscape/impl-status.json` in [dev.hub](https://github.com/openleap-io/io.openleap.dev.hub) to get the current list of tracked specs and their known repository mappings.
 
 ### Step 2: Discover Repositories
 
@@ -36,7 +36,7 @@ gh repo list openleap-io --limit 200 --json name,pushedAt,isArchived
 
 **Important:** Never assume one page of 100 is sufficient. The org exceeded 100 repos in April 2026 and the pagination bug caused `io.openleap.ps.tim` and 5 other PS repos to be missed entirely in the 2026-04-05 crawl.
 
-Cross-reference with `landscape/REPO_CATALOG.yaml` to identify backend-service repos.
+Cross-reference with `landscape/repo-catalog.yaml in dev.hub` to identify backend-service repos.
 
 ### Step 3: For Each Mapped Repository
 
@@ -199,7 +199,7 @@ Note: `lastAnalysisCommitHash` and `lastAnalysisAt` are set **per service entry*
 
 ### Step 6: Write Updated Registry
 
-Write the updated `landscape/implementation-status.json` with proper formatting (2-space indent).
+Write the updated `landscape/impl-status.json` in [dev.hub](https://github.com/openleap-io/io.openleap.dev.hub) with proper formatting (2-space indent).
 
 ### Step 7: Generate Summary Report
 

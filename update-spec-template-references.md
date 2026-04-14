@@ -3,8 +3,8 @@
 > **Purpose:** Add `Template:` version references and `Template Compliance:` scores to all existing specification instances
 > **Version:** 1.0.0
 > **Scope:** All `.md` spec files under `spec/`
-> **Registry:** `concepts/templates/template-registry.json` (source of truth for versions)
-> **Governance:** `concepts/governance/template-governance.md` (GOV-TPL-001, §6)
+> **Registry:** `https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/templates/template-registry.json` (source of truth for versions)
+> **Governance:** `https://github.com/openleap-io/io.openleap.dev.concepts/blob/main/governance/template-governance.md` (GOV-TPL-001, §6)
 
 ---
 
