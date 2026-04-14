@@ -1,0 +1,28 @@
+**Gap analysis (Step 2) — source was a 14-line migration stub:**
+
+| Section | Was Present | Content Depth | Action |
+|---------|-------------|---------------|--------|
+| Preamble / Meta | Stub only | None | Written from scratch |
+| §0–§15 | None | None | All 16 sections authored |
+
+**Self-verification against checklist:**
+- [x] All 16 sections (§0–§15) present with correct heading hierarchy
+- [x] Guidelines Compliance block populated
+- [x] Subscription aggregate has full attribute table (25 attributes)
+- [x] DeliveryLog child entity has attribute table
+- [x] 3 enumerations (SubscriptionStatus, DeliveryStatus, EncryptionAlgorithm) all with value tables
+- [x] 10 business rules in §4.1 catalog; detailed definitions for BR-001–005, 008
+- [x] 9 use cases with Actor/Preconditions/Main Flow for UC-001, UC-005, UC-008
+- [x] 6 REST resource endpoints + 3 business operations with full JSON request/response
+- [x] §7.2 intentionally empty (design decision D-NFS-001); §7.3 two consumed events with queue config
+- [x] 3 database tables with column definitions, indexes, retention policies
+- [x] All 5 extension point types covered in §12
+- [x] `custom_fields JSONB` column in nfs_subscription table definition
+- [x] Consistency checks in §14.1 all Pass
+- [x] 9 open questions (Q-NFS-001 through Q-NFS-009) in §14.3
+- [x] Template compliance ~95%; two stubs noted (§5.3 diagrams, §12.7 extension API endpoints)
+
+**Output artifacts produced:**
+- `spec/T1_Platform/tech/domain-specs/tech_nfs-spec.md` — ~1,350 lines, fully upgraded
+- `status/tech-nfs-changelog.md` — change summary with decisions and open questions
+- `status/tech-nfs-open-questions.md` — all 9 open questions with context and suggested options

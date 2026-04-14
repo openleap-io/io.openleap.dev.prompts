@@ -1,0 +1,22 @@
+All three output artifacts are written. Here's the summary:
+
+---
+
+**Step 2 — Gap analysis:** Source was a 14-line migration stub (zero domain content). All 16 sections built from scratch using the event schemas in `contracts/events/tech/rpt/`, feature specs F-TECH-002-xx, tech suite context, and domain expertise on Jasper rendering infrastructure.
+
+**Step 10d — Self-verification:**
+- ✅ All 16 sections (§0–§15) present with correct heading hierarchy
+- ✅ Guidelines Compliance block populated
+- ✅ Both aggregates (`ReportTemplate`, `RenderJob`) have full attribute tables
+- ✅ `TemplateVersion` child entity has full attribute table
+- ✅ All 5 enumerations documented (TemplateStatus, DataSourceType, FileType, RenderJobStatus, OutputFormat)
+- ✅ All 8 business rules in §4.1 have detail blocks in §4.2
+- ✅ All 5 use cases with detail have Actor/Preconditions/Main Flow/Postconditions
+- ✅ 6 REST endpoints have full request/response JSON examples
+- ✅ All 5 published events have envelope format confirmed against companion `.schema.json` files
+- ✅ Consumed event (`iam.tenant.deleted`) has queue config and failure handling
+- ✅ All 4 DB tables have column definitions and indexes; `rpt_templates` and `rpt_render_jobs` include `custom_fields JSONB` + GIN index
+- ✅ All 5 extension point types covered in §12
+- ✅ Consistency checks in §14.1 all PASS
+- ✅ Template compliance recalculated: ~95% (gaps: §5.3 and §12.7 stubs)
+- ✅ 11 OPEN QUESTIONs tracked in `status/tech-rpt-open-questions.md`

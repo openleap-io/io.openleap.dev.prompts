@@ -1,0 +1,33 @@
+Done. Here's a summary of what was produced:
+
+---
+
+## Upgrade Complete: `tech_dms-spec.md`
+
+**Input:** 14-line migration stub (no existing domain content)
+**Output:** 2,018-line full spec at ~95% TPL-SVC v1.0.0 compliance
+
+### What was built from scratch
+
+| Section | Content |
+|---------|---------|
+| §0 | Purpose, audience, in/out-scope, related docs |
+| §1 | Business context, SAP ArchiveLink/GOS positioning, Mermaid context diagram |
+| §2 | Service identity metadata + team table |
+| §3 | Class diagram + full attribute tables for `Document`, `DocumentVersion`, `RetentionPolicy`; lifecycle state machines; 5 enumerations; 2 shared types |
+| §4 | 10 business rules (catalog + detailed definitions + validation table) |
+| §5 | 13 use cases; detailed Actor/Preconditions/Flow/Postconditions for 7 key UCs; virus-scan sequence diagram; cross-domain workflow |
+| §6 | 19 REST endpoints with request/response JSON for 5 key operations |
+| §7 | 7 published events + 1 consumed event with full ADR-011 thin-event envelopes + Mermaid sequence diagram |
+| §8 | Mermaid ER diagram + SQL DDL for 5 tables (`tech_dms_document`, `tech_dms_document_version`, `tech_dms_retention_policy`, `tech_dms_document_acl`, `tech_dms_outbox_events`) |
+| §9–§15 | Security, quality, feature deps (F-TECH-001-xx), all 5 extension types, SAP migration mapping, 5 open questions |
+
+### Output artifacts
+
+- **`tech_dms-spec.md`** — main spec (2,018 lines)
+- **`status/spec-changelog.md`** — what was added and why
+- **`status/spec-open-questions.md`** — Q-DMS-001 through Q-DMS-005 (detailed options for each)
+
+### Remaining gaps (~5%)
+- §5.3 process flow diagrams — stub only (sequence diagram is in §7)
+- §12.7 extension API endpoints — structural stub pending ADR-067 implementation guidance

@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+#
+# post-commit hook: detect spec changes not reflected in implementation-status.json
+#
+# If spec files tracked by implementation-status.json were modified in this commit
+# but implementation-status.json itself was NOT updated, inject an attentionRequired
+# entry so the dashboard surfaces a staleness warning.
+#
+
+STATUS_FILE="landscape/implementation-status.json"
+
+# Skip if implementation-status.json doesn't exist
+[ -f "$STATUS_FILE" ] || exit 0
+
+# Check if implementation-status.json was part of this commit
+STATUS_CHANGED=$(git diff-tree --no-commit-id --name-only -r HEAD -- "$STATUS_FILE" 2>/dev/null)
+
+# If implementation-status.json was updated in this commit, clear any stale warnings and exit
+if [ -n "$STATUS_CHANGED" ]; then
+    # Remove attentionRequired block if present (status was just updated)
+    if grep -q '"attentionRequired"' "$STATUS_FILE" 2>/dev/null; then
+        python3 -c "
+import json, sys
+with open('$STATUS_FILE', 'r') as f:
+    data = json.load(f)
+if 'attentionRequired' in data:
+    del data['attentionRequired']
+    with open('$STATUS_FILE', 'w') as f:
+        json.dump(data, f, indent=2)
+        f.write('\n')
+" 2>/dev/null
+    fi
+    exit 0
+fi
+
+# Get all spec files tracked in implementation-status.json
+TRACKED_SPECS=$(python3 -c "
+import json
+with open('$STATUS_FILE', 'r') as f:
+    data = json.load(f)
+for svc in data.get('services', []):
+    sf = svc.get('specFile', '')
+    if sf:
+        print(sf)
+" 2>/dev/null)
+
+[ -z "$TRACKED_SPECS" ] && exit 0
+
+# Check which tracked spec files were modified in this commit
+CHANGED_SPECS=""
+for spec in $TRACKED_SPECS; do
+    if git diff-tree --no-commit-id --name-only -r HEAD -- "$spec" 2>/dev/null | grep -q .; then
+        CHANGED_SPECS="$CHANGED_SPECS $spec"
+    fi
+done
+
+# If no tracked specs changed, nothing to do
+[ -z "$CHANGED_SPECS" ] && exit 0
+
+# Spec files changed but implementation-status.json was not updated — inject warning
+COMMIT_HASH=$(git rev-parse --short HEAD)
+COMMIT_DATE=$(git log -1 --format=%ci HEAD | cut -d' ' -f1)
+CHANGED_COUNT=$(echo "$CHANGED_SPECS" | wc -w)
+
+python3 -c "
+import json
+
+with open('$STATUS_FILE', 'r') as f:
+    data = json.load(f)
+
+changed = '''$CHANGED_SPECS'''.split()
+commit = '$COMMIT_HASH'
+date = '$COMMIT_DATE'
+
+data['attentionRequired'] = [
+    {
+        'type': 'dashboard-stale',
+        'severity': 'warning',
+        'message': f'{len(changed)} spec file(s) changed in commit {commit} ({date}) but implementation-status.json was not re-crawled.',
+        'since': date,
+        'commit': commit,
+        'changedSpecs': changed,
+        'resolution': 'Run the crawl-implementation-status prompt or manually update implementation-status.json'
+    }
+]
+
+with open('$STATUS_FILE', 'w') as f:
+    json.dump(data, f, indent=2)
+    f.write('\n')
+" 2>/dev/null
+
+exit 0

@@ -1,0 +1,36 @@
+All 16 sections (§0–§15) present. 1,913 lines. Self-verification checklist:
+
+**Verification results:**
+- ✅ All 16 sections (§0–§15) present with correct heading hierarchy
+- ✅ Guidelines Compliance block populated (Non-Negotiables, Source Priority, Style Guide)
+- ✅ ConfigEntry aggregate has full attribute table (14 attributes with Type/Format/Description/Constraints/Required/Read-Only)
+- ✅ ConfigAuditLog child entity has attribute table (12 attributes)
+- ✅ All 3 enum types (ConfigScope, ConfigType, ChangeType) have value tables
+- ✅ All 8 business rules in §4.1 have detailed definitions in §4.2
+- ✅ All 5 use cases have Actor/Preconditions/Main Flow/Postconditions
+- ✅ All 5 REST endpoints have request/response JSON examples
+- ✅ `param.cfg.config.changed` event has envelope format and payload example
+- ✅ Consumed events (conditional) have queue config and failure handling
+- ✅ All 3 database tables have column definitions and indexes
+- ✅ Extension points §12 covers all 5 types (custom fields, events, rules, actions, hooks)
+- ✅ Extensible aggregate (ConfigEntry) has `custom_fields JSONB` column in §8.3
+- ✅ Consistency checks §14.1 filled with all Pass
+- ✅ Template compliance ~95% recalculated and updated in header
+- ✅ No existing content was removed (migration stub had no normative content to preserve)
+- ✅ 5 OPEN QUESTION entries tracked in §14.3 and in `status/spec-open-questions.md`
+
+---
+
+**Done.** The upgrade produced three output artifacts:
+
+| Artifact | Path | Size |
+|----------|------|------|
+| Upgraded spec | `spec/T1_Platform/param/domain-specs/param_cfg-spec.md` | 1,913 lines |
+| Changelog | `spec/T1_Platform/param/domain-specs/status/spec-changelog.md` | ~80 lines |
+| Open Questions | `spec/T1_Platform/param/domain-specs/status/spec-open-questions.md` | ~70 lines |
+
+**Key content added:** ConfigEntry aggregate (14-attribute table, 3 states, transitions) + ConfigAuditLog child entity + 3 enumerations + 8 business rules with full error codes + 5 use cases + 5 REST endpoints with JSON examples + semi-thick `param.cfg.config.changed` event + 3 PostgreSQL table definitions + RBAC/GDPR/SOX security section + all 5 extension point types.
+
+**Notable decision (D-CFG-001):** The `param.cfg.config.changed` event carries `previousValue`/`newValue` (semi-thick), deviating slightly from ADR-011 thin events. This is justified by the suite's read-heavy cache invalidation architecture documented in `_param_suite.md` §4.
+
+**5 open questions raised:** tenant deletion cleanup, secret encryption, extension API ownership, TENANT/GLOBAL resolution priority, and port registry confirmation.

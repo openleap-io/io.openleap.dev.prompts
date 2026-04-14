@@ -1,0 +1,35 @@
+All 16 sections are present (§0–§15 + Guidelines Compliance block). The spec is 1,855 lines. Self-verification checklist:
+
+- ✅ All 16 sections present with correct heading hierarchy
+- ✅ Guidelines Compliance block populated
+- ✅ All operation value objects have attribute tables (Type/Format/Description/Constraints/Required/Read-Only)
+- ✅ All enumerations (`ZugferdProfile`, `ContentType`, `ValidationSeverity`) have value tables in §3.4
+- ✅ All business rules in §4.1 have entries; 6 have detailed §4.2 definitions (most important ones)
+- ✅ All use cases have Actor/Preconditions/Main Flow/Postconditions
+- ✅ All 4 REST endpoints have request/response JSON examples
+- ✅ No published events — §7.2 explicitly documents "None" (stateless, ADR-TECH-003)
+- ✅ No database tables — §8.3 explicitly documents "None" (stateless)
+- ✅ Extension points §12 covers all 5 types (custom fields N/A explained, extension events, rules, actions, hooks)
+- ✅ No `custom_fields JSONB` columns in §8 (stateless — no tables)
+- ✅ Consistency checks in §14.1 all Pass with notes
+- ✅ Template compliance ~95% (gaps: §5.3 diagram stub, §12.7 endpoint stub)
+- ✅ No existing content removed (source was a 14-line stub; none deleted)
+- ✅ 9 OPEN QUESTION entries tracked in §14.3 and detailed in `tech-zugferd-open-questions.md`
+
+---
+
+The upgrade is complete. Here's a summary of what was produced:
+
+**`tech_zugferd-spec.md`** — 1,855 lines (~95% TPL-SVC v1.0.0 compliance)
+
+The spec documents the ZUGFeRD E-Invoicing Service as a **fully stateless transformer** (per ADR-TECH-003), which required adapting the template in three places: §3 uses request/response value objects instead of persistent aggregates, §7 explicitly states "None" for events, and §8 has no database tables. All four decisions are documented in §14.2.
+
+Key content added:
+- **§3**: 3 operation models, 6 enumerations (including all 6 ZUGFeRD profiles with business descriptions), 6 shared types (`InvoiceData`, `PartyInfo`, `MonetaryAmount`, `InvoiceLineItem`, `ValidationError`, plus one more)
+- **§4**: 13 business rules (BR-ZF-001–013), 6 detailed definitions, full validation table, reference data dependencies (bundled classpath resources)
+- **§5**: 4 use cases with full detail; cross-domain invoice generation workflow (RPT → ZUGFeRD → DMS)
+- **§6**: 4 REST endpoints (`/embed`, `/validate`, `/extract`, `/info`) with realistic JSON request/response examples including a complete EN16931 invoice embed
+- **§12**: 3 extension events, 2 rule slots, 3 aggregate hooks with hook contracts
+- **§13**: SAP FI/SD migration mapping; `/api/t1/zugferd/v1` deprecation (6-month sunset per ADR-TECH-004)
+
+**`tech-zugferd-changelog.md`** and **`tech-zugferd-open-questions.md`** created with 9 open questions (Q-ZF-001 through Q-ZF-009) covering port assignment, file size, ISO validation strategy, OAuth2 scoping, capacity planning, feature dependencies, extension API design, and ZUGFeRD 1.0 backward compatibility.

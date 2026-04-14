@@ -1,0 +1,28 @@
+All checks pass. Here's a summary of the completed upgrade:
+
+---
+
+**Upgrade complete.** `spec/T3_Domains/SD/sd_ret-spec.md` upgraded from ~72% to ~95% TPL-SVC v1.0.0 compliance (2,742 lines, up from 503).
+
+**Self-verification results:**
+- All 16 sections (§0–§15) present with correct heading hierarchy ✓
+- Guidelines Compliance block populated ✓
+- Attribute tables for all 4 aggregates (ReturnOrder, ReturnLine, Inspection, ReturnReason) ✓
+- All 7 enumerations documented in §3.4 ✓
+- All 6 business rules have detailed definitions in §4.2 ✓
+- All use cases have Actor/Preconditions/Main Flow/Postconditions ✓
+- All 14 REST endpoints have request/response JSON bodies ✓
+- 4 key events have envelope format + payload examples; 3 consumed events have queue config ✓
+- All 5 database tables have full column definitions and indexes ✓
+- Extension points cover all 5 types (custom-field, extension-event, extension-rule, extension-action, aggregate-hook) ✓
+- 3 extensible aggregates have `custom_fields JSONB` in table definitions ✓
+- §14.1 Consistency Checks filled in (all Pass or documented as Open) ✓
+- 7 open questions tracked in §14.3 ✓
+- No existing content removed ✓
+
+**Output artifacts:**
+- `spec/T3_Domains/SD/sd_ret-spec.md` — upgraded spec
+- `spec/T3_Domains/SD/status/sd_ret-spec-changelog.md` — structured changelog
+- `spec/T3_Domains/SD/status/sd_ret-spec-open-questions.md` — 7 open questions (Q-RET-001 through Q-RET-007)
+
+**Remaining ~5% gap:** §11 feature dependency register uses planned feature IDs (no feature specs yet authored) — tracked as Q-RET-005.

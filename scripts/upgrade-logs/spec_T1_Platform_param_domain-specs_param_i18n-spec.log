@@ -1,0 +1,36 @@
+All three output artifacts are complete. Here's the summary:
+
+---
+
+## Upgrade complete: `param_i18n-spec.md`
+
+**Input:** 22-line migration stub (~0% compliance)
+**Output:** Full spec at ~95% TPL-SVC v1.0.0 compliance
+
+### Gap analysis that drove the work
+
+The source spec referenced in the stub (`spec/T1_Platform/i18n/t1-i18n-svc-spec.md`) does not exist. The entire domain spec was built from scratch using: the PARAM suite spec (glossary, ubiquitous language), event schema contracts (`namespace.seeded`, `namespace.updated`), the OpenAPI stub (port 8101), and the F-PARAM-002 feature composition (translation management features).
+
+### What was produced
+
+| Artifact | Location |
+|----------|----------|
+| Full domain spec (~1,350 lines) | `param/domain-specs/param_i18n-spec.md` |
+| Changelog | `param/domain-specs/status/spec-changelog.md` (appended) |
+| Open questions | `param/domain-specs/status/spec-open-questions.md` (appended) |
+
+### Key design decisions
+
+- **DEC-I18N-001:** `namespaceId` is the business key (equals `catalogId` for CATALOG type, feature leaf ID for MESSAGE type)
+- **DEC-I18N-002:** Tenant overrides use the same `i18n_translation` table with `tenant_id` set — RLS handles isolation
+- **DEC-I18N-003:** `/resolve` endpoint returns a flat `{ key: value }` map — directly usable as a Vue i18n message bundle
+- **DEC-I18N-004:** No `custom_fields JSONB` on translation entries — consistent with the simple key-value nature of the domain
+- **DEC-I18N-005:** `namespace.seeded` event payload includes `keyCount` and `locales` (beyond thin-event minimum) — consistent with existing schema contracts; BFF cache invalidation requires knowing which locales to invalidate
+
+### Open questions raised (Q-I18N-001 to 005)
+
+1. Should MESSAGE namespace IDs be validated against a feature registry?
+2. Circuit-breaker behaviour when `param-ref-svc` is unavailable during CATALOG namespace registration
+3. Should `param-ref-svc` publish `catalog.created` events for auto-namespace registration?
+4. Should `custom_fields JSONB` be added to `i18n_translation` for product metadata?
+5. Confirm port `8101` in the platform service port registry

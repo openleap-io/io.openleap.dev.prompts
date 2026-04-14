@@ -1,0 +1,16 @@
+services:
+  crawler:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      DEFAULT_CRON: "*/5 * * * *"   # every 5 minutes
+      GIT_USER_NAME: crawl-bot
+      GIT_USER_EMAIL: crawl-bot@openleap.io
+    volumes:
+      - crawler-data:/data
+    restart: unless-stopped
+
+volumes:
+  crawler-data:

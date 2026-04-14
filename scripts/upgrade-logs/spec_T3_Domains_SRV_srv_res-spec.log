@@ -1,0 +1,30 @@
+All sections verified. Here's the **self-verification checklist** result:
+
+| Check | Status |
+|-------|--------|
+| All 16 sections (§0–§15) present with correct heading hierarchy | ✅ Pass |
+| Guidelines Compliance block: all 3 sub-sections | ✅ Pass |
+| Every aggregate has attribute tables | ✅ Pass (SchedulingResource + AvailabilityWindow) |
+| Every `enum(...)` has a §3.4 enumeration table | ✅ Pass (ResourceType, ResourceStatus) |
+| Every business rule in §4.1 has detailed definition in §4.2 | ✅ Pass (BR-001 through BR-005) |
+| Every use case has Actor/Preconditions/Main Flow/Postconditions | ✅ Pass (UC-001 through UC-007) |
+| Every REST endpoint has request/response bodies with JSON | ✅ Pass (§6.2, 7 endpoints) |
+| Every published event has envelope format and payload | ✅ Pass (§7.2, 4 events) |
+| Every consumed event has queue config and failure handling | ✅ Pass (§7.3, 3 consumed events) |
+| Every database table has column definitions and indexes | ✅ Pass (3 tables in §8.3) |
+| Extension points §12 covers all 5 types | ✅ Pass |
+| Extensible aggregates have `custom_fields JSONB` in §8 | ✅ Pass (SchedulingResource) |
+| Consistency checks in §14.1 filled with Pass/Fail | ✅ Pass |
+| Template compliance recalculated | ✅ 97% |
+| No existing content removed | ✅ Pass |
+| All new OPEN QUESTIONs tracked in §14.3 | ✅ Pass (13 questions, Q-RES-001 to Q-RES-013) |
+
+---
+
+**Upgrade complete.** Three artifacts produced:
+
+1. **`spec/T3_Domains/SRV/srv_res-spec.md`** — Upgraded from 604 → 2,068 lines, ~92% → ~97% TPL-SVC v1.0.0 compliance. Version bumped to 1.2 (2026-04-03).
+
+2. **`spec/T3_Domains/SRV/status/srv_res-changelog.md`** — Full summary of every section added or modified.
+
+3. **`spec/T3_Domains/SRV/status/srv_res-open-questions.md`** — 13 open questions (Q-RES-001 through Q-RES-013) covering port/repo, skill catalog ownership, FAC event keys, deactivation policy, window constraints, fallback behavior, assignment event ownership, retention, GDPR classification, feature IDs, and migration mapping.

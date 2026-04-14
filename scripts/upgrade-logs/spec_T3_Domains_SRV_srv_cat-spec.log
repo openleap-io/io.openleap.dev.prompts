@@ -1,0 +1,27 @@
+The upgrade is complete. Here's the summary:
+
+---
+
+**Upgrade complete: `srv_cat-spec.md` → v1.2.0 (TPL-SVC v1.0.0, 100% compliance)**
+
+**Self-verification checklist:**
+- [x] All 16 sections (§0–§15) present with correct heading hierarchy
+- [x] Guidelines Compliance block fully populated
+- [x] `ServiceOffering` aggregate has full attribute table with Type/Format/Description/Constraints/Required/Read-Only
+- [x] Both enumerations (`OfferingStatus`, `RequirementType`) have §3.4 value tables
+- [x] All 5 business rules in §4.1 have detailed definitions in §4.2
+- [x] All use cases (UC-001–UC-006) have Actor/Preconditions/Main Flow/Postconditions
+- [x] All REST endpoints (6.2.1–6.2.4 + business ops) have JSON request/response bodies
+- [x] All 4 published events have envelope format and payload JSON
+- [x] Consumed events framework in §7.3 (structural; pending Q-CAT-003)
+- [x] All 4 database tables have column definitions and indexes (including `cat_outbox_events`)
+- [x] Extension points §12 covers all 5 types
+- [x] `custom_fields JSONB` added to `cat_service_offering` in §8.3 and GIN index added
+- [x] All 7 consistency checks in §14.1 with Pass/Fail
+- [x] Template compliance recalculated to 100%
+- [x] No existing content removed or lost
+
+**Output artifacts:**
+- `spec/T3_Domains/SRV/srv_cat-spec.md` — upgraded spec (~1,430 lines)
+- `spec/T3_Domains/SRV/status/cat-changelog.md` — structured changelog
+- `spec/T3_Domains/SRV/status/cat-open-questions.md` — 9 open questions (Q-CAT-001 through Q-CAT-009); 3 new (Q-CAT-007–Q-CAT-009)

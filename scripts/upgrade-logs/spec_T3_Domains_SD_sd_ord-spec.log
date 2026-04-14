@@ -1,0 +1,28 @@
+All checklist items confirmed. Here's a summary of the upgrade:
+
+---
+
+## Upgrade Complete: `sd_ord-spec.md` → TPL-SVC v1.0.0
+
+**Result:** 1,292 lines → 3,227 lines | ~88% → ~95% compliance
+
+### What was added
+
+| Area | Added |
+|------|-------|
+| **§3 Domain Model** | Full attribute tables for PartnerFunction, OrderBlock, DocumentNote; 4 new enumerations (LineStatus, BlockType, NoteType, PartnerFunctionCode); §3.5 Shared Types with Money + PriceSnapshot |
+| **§4 Business Rules** | BR-ORD-003 through BR-ORD-011 — 9 fully specified rule blocks with Business Context, Rule Statement, Enforcement, Validation Logic, Error Handling, Examples |
+| **§6 REST API** | 9 full endpoint specs (§6.2.1–6.2.9) with request/response JSON, headers, business rules checked, events published, error responses |
+| **§7 Events** | Per-event payload + envelope + known consumers for all 8 published events; per-consumer handler class, queue config, failure handling for 5 consumed events; §7.4 event flow diagram |
+| **§8 Data Model** | Full column definitions + indexes + relationships for 6 tables: `ord_sales_documents`, `ord_lines`, `ord_partners`, `ord_blocks`, `ord_notes`, `ord_outbox_events` |
+| **§10.3/10.4** | Scalability (horizontal scaling, read replicas, capacity planning) and Maintainability (versioning, backward compat, monitoring, alerting) |
+| **§11 Feature Dependencies** | Provisional feature register (F-SD-ORD-001–006), endpoints per feature, BFF hints, impact assessment |
+| **§12 Extension Points** | All 5 types: custom fields (2 aggregates), 7 extension events, 4 rule slots, 3 action slots, 6 aggregate hooks with contracts |
+| **§13 Migration** | SAP SD → OpenLeap mapping (VBAK/VBAP/VBPA/KONV), §13.2 deprecation framework |
+| **§14.1** | All 7 consistency checks filled (6× Pass, 1× Partial) |
+
+### Output artifacts
+
+- `spec/T3_Domains/SD/sd_ord-spec.md` — upgraded spec
+- `spec/T3_Domains/SD/status/sd_ord-spec-changelog.md` — full change log
+- `spec/T3_Domains/SD/status/sd_ord-spec-open-questions.md` — 7 open questions (Q-ORD-001 through Q-ORD-007)

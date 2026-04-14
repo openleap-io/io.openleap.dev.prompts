@@ -1,0 +1,41 @@
+All 16 sections (§0–§15) plus all sub-sections are present. The spec is 2,759 lines. Self-verification checklist:
+
+- [x] All 16 sections (§0–§15) present — confirmed above
+- [x] Guidelines Compliance block populated (Non-Negotiables, Source Priority, Style Guide)
+- [x] Every aggregate has attribute tables (Appointment, WaitlistEntry, Reservation)
+- [x] Every `enum(...)` in Mermaid diagrams has §3.4 enumeration table (AppointmentStatus, WaitlistStatus)
+- [x] Every business rule in §4.1 has a detailed definition in §4.2 (BR-001–BR-007)
+- [x] Every use case has Actor/Preconditions/Main Flow/Postconditions (UC-001–UC-010)
+- [x] Every REST endpoint has request/response bodies with JSON examples
+- [x] Every published event has envelope format and payload example
+- [x] Every consumed event has queue config and failure handling
+- [x] Every database table has column definitions and indexes (including outbox table)
+- [x] Extension points §12 covers all 5 types (custom fields, events, rules, actions, hooks)
+- [x] Extensible aggregates have `custom_fields JSONB` in §8 table definitions
+- [x] Consistency checks in §14.1 filled with Pass/Fail
+- [x] Template compliance percentage updated (~95%)
+- [x] No existing content removed
+- [x] All OPEN QUESTION entries tracked in §14.3 and `status/spec-open-questions.md`
+
+---
+
+Upgrade complete. Here's the summary:
+
+**Input:** `srv_apt-spec.md` v1.1 (~925 lines, ~72% compliance)
+**Output:** `srv_apt-spec.md` v1.2 (2,759 lines, ~95% compliance)
+
+**Three output artifacts produced:**
+1. `spec/T3_Domains/SRV/srv_apt-spec.md` — upgraded spec in place
+2. `spec/T3_Domains/SRV/status/spec-changelog.md` — structured change log
+3. `spec/T3_Domains/SRV/status/spec-open-questions.md` — 15 open questions (Q-APT-001–Q-APT-015)
+
+**Key additions:**
+- §4.2: Full rule definitions for all 7 business rules
+- §5.4: Cross-domain choreography workflow (booking → session/billing)
+- §6.2–6.3: Complete request/response JSON for all endpoints
+- §7.2: Event envelopes + known consumers per published event
+- §8.3: `apt_outbox_events` table; `custom_fields JSONB` on appointment and waitlist tables; TIMESTAMPTZ across all columns
+- §12: Full extension point coverage — custom fields, extension events, rules, actions, aggregate hooks, API endpoints
+- §9.3: GDPR compliance controls (erasure, portability, audit trail)
+
+**Open questions preserved:** 4 original (renumbered Q-APT-001–004) + 11 new = 15 total.

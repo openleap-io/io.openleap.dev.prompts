@@ -1,0 +1,24 @@
+All three output artifacts are written. Here's the summary:
+
+---
+
+**Gap Analysis Result:** The target was a 14-line migration stub — all 16 sections were missing (0% compliance).
+
+**Upgrade complete — `tech_jc-spec.md` at ~95% TPL-SVC v1.0.0 compliance.**
+
+### What was produced
+
+**`spec/T1_Platform/tech/domain-specs/tech_jc-spec.md`** (~1,350 lines)
+- **3 aggregates:** `Runner` (self-registering execution engines), `JobType` (parameter-schema + policy definitions), `Job` (concrete submissions with full lifecycle state machine)
+- **1 child entity:** `JobTemplate` (reusable parameter presets under JobType)
+- **10 business rules** (BR-JC-001–010) with detailed definitions for 8
+- **13 use cases** catalogued; 5 with full Actor/Preconditions/Main Flow/Postconditions
+- **18 REST endpoints** with request/response JSON for 6 key operations
+- **6 published events** + 1 consumed event (`iam.tenant.deleted`) with ADR-011 thin-event envelopes
+- **5 database tables** (`jc_runner`, `jc_job_type`, `jc_job_type_template`, `jc_job`, `jc_outbox_events`) with full column/index definitions
+- **All 5 extension types** in §12: custom fields on JobType + Job, extension events/rules/actions/hooks
+- **SAP SM36/SM37** migration mapping in §13
+
+**`status/tech-jc-changelog.md`** — 15 decisions documented
+
+**`status/tech-jc-open-questions.md`** — 7 open questions (Q-JC-001–007), covering: cron scheduling scope, runner reachability checking, OFFLINE runner re-registration, §5.3 diagram strategy, OpenAPI population, extension API documentation, SAP migration approach

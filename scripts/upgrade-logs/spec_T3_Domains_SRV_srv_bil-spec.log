@@ -1,0 +1,45 @@
+All 16 sections (§0–§15) plus Guidelines Compliance and Review present. Self-verification checklist:
+
+- [x] All 16 sections (§0–§15) with correct heading hierarchy
+- [x] Guidelines Compliance block — all three sub-sections
+- [x] BillingIntent attribute table with Type/Format/Description/Constraints/Required/Read-Only
+- [x] IntentType and IntentStatus enumerations have tables in §3.4
+- [x] All 6 business rules in §4.1 have detailed definitions in §4.2
+- [x] All 9 use cases have Actor/Preconditions/Main Flow/Postconditions
+- [x] All 6 REST endpoints have request/response JSON
+- [x] All 6 published events have envelope format and payload example
+- [x] All 3 consumed events have queue config and failure handling
+- [x] All 3 database tables have column definitions and indexes
+- [x] §12 covers all 5 extension types (custom fields, events, rules, actions, hooks)
+- [x] BillingIntent and LineItem have `custom_fields JSONB` in §8.3
+- [x] §14.1 consistency checks filled with Pass/Partial
+- [x] Template compliance recalculated (~98%)
+- [x] No existing content removed
+- [x] 15 OPEN QUESTION entries in §14.3 and separate file
+
+**Upgrade complete.** Here's the summary:
+
+**`spec/T3_Domains/SRV/srv_bil-spec.md`** — upgraded from v1.1 (790 lines, ~95% claimed but ~60% actual) to v1.2 (2,415 lines, ~98% compliance):
+
+| Added | Detail |
+|-------|--------|
+| §4.2 | Detailed rule definitions for all 6 BRs (context, statement, enforcement, error handling, examples) |
+| §4.3–4.4 | Field/cross-field validations + reference data dependencies |
+| §5.1 | Business logic placement table (domain/service/application) |
+| §5.2 | Full UC detail blocks for all 9 use cases |
+| §5.3–5.4 | Sequence diagrams + cross-domain workflow documentation |
+| §6.2–6.3 | Full request/response JSON for all 6 endpoints |
+| §7.2–7.4 | Event envelopes, queue config (3 consumers), event flow diagram |
+| §8.3 | Outbox table + `custom_fields JSONB` + GIN indexes on both tables |
+| §9.1–9.3 | Data classification, permission matrix, GDPR/SOX compliance |
+| §10.1–10.4 | Throughput, RTO/RPO, failure scenarios, scalability, monitoring |
+| §11.1–11.5 | Feature dependency register, BFF hints, impact assessment |
+| §12 | Full 5-type extension model (custom fields, events, rules, actions, hooks) |
+| §13.1–13.2 | Migration framework (SAP FI-BL/SD-BIL reference), deprecation framework |
+| §14.1, §14.5 | 7 consistency checks + 14 ADR cross-references |
+| §15.2–15.3 | References + status output requirements |
+
+**Output artifacts:**
+- `spec/T3_Domains/SRV/srv_bil-spec.md` — upgraded spec (2,415 lines)
+- `spec/T3_Domains/SRV/status/bil-changelog.md` — change log
+- `spec/T3_Domains/SRV/status/bil-open-questions.md` — 15 open questions (Q-BIL-001–015)

@@ -1,0 +1,35 @@
+The upgrade is complete. Here's what was produced:
+
+## `spec/T3_Domains/SD/sd_dlv-spec.md`
+
+- **764 → 2,677 lines** | **~77% → ~95% TPL-SVC v1.0.0 compliance**
+- Version bumped to `1.2` (2026-04-03)
+
+**Content added (non-destructive):**
+
+| Section | What was added |
+|---------|---------------|
+| Preamble | "Source of Truth Priority" block; full Style Guide |
+| §3.3 | Attribute tables for all 7 entities; Allowed Transitions table; collection constraints |
+| §3.4 | 5 missing enums: DeliveryLineStatus, PickTaskStatus, HandlingUnitType, MovementType, GoodsMovementStatus |
+| §4.2 | Full rule definitions for BR-DLV-001–006 (context, validation logic, error codes, examples) |
+| §4.3–4.4 | 16 additional field validations; cross-field validations; reference data as catalog table |
+| §5.2 | Full Actor/Preconditions/Main Flow/Postconditions for all 5 use cases |
+| §5.4 | Cross-domain workflows (Order-to-Delivery, Return Delivery choreography) |
+| §6.2–6.3 | Request/response JSON for all CRUD + 6 business operations |
+| §7.2–7.4 | Event payload structures, envelopes, known consumers, handler class names, queue config, failure handling, event flow diagram |
+| §8.2–8.4 | Mermaid ER diagram; full column/index/retention definitions for 8 tables (incl. `dlv_outbox_events`); external catalog table |
+| §9.1, §9.3 | Data classification table; GDPR/SOX compliance controls |
+| §10.2–10.4 | RTO/RPO (15m/30s), failure scenarios, scalability strategy, maintainability |
+| §11 | Feature Dependency Register (9 provisional features), BFF hints, impact assessment |
+| §12 | All 5 extension types: custom fields (Delivery + HandlingUnit), extension events (4 hooks), extension rules (3 slots), extension actions (3), aggregate hooks (2) |
+| §13 | SAP LIKP/LIPS/MKPF migration mapping; deprecation framework |
+| §14 | Restructured: §14.1 Consistency Checks, §14.2 Decisions (4), §14.3 Open Questions (8), §14.4 Domain ADRs, §14.5 Suite ADRs |
+| §15 | Added §15.2 References, §15.3 Status Output Requirements |
+
+## New status files
+
+- `spec/T3_Domains/SD/status/spec-changelog.md`
+- `spec/T3_Domains/SD/status/spec-open-questions.md` — 8 open questions (Q-DLV-001–008)
+
+**Remaining gap (~5%):** Q-DLV-005 (feature spec IDs provisional), Q-DLV-007 (pick task ownership undecided), Q-DLV-008 (additional ADRs TBD).

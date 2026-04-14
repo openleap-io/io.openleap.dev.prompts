@@ -1,0 +1,36 @@
+All 16 sections (§0–§15) with all required sub-sections are present. Self-verification checklist:
+
+- [x] All 16 sections (§0–§15) present with correct heading hierarchy
+- [x] Guidelines Compliance block — full 3-section version (Non-Negotiables, Source Priority, Style Guide)
+- [x] `Case` aggregate has full attribute table with Type/Format/Description/Constraints/Required/Read-Only
+- [x] `CaseStatus` enum has §3.4 enumeration table
+- [x] All 3 business rules in §4.1 have detailed definitions in §4.2
+- [x] All 6 use cases have Actor/Preconditions/Main Flow/Postconditions
+- [x] All 6 REST endpoints have request/response JSON bodies
+- [x] All 5 published events have envelope format and payload example
+- [x] Both consumed events have queue config and failure handling
+- [x] All 3 database tables have column definitions and indexes
+- [x] §12 covers all 5 extension types (custom fields, events, rules, actions, hooks)
+- [x] `cas_case` has `custom_fields JSONB` column in §8.3
+- [x] Consistency checks in §14.1 filled with Pass/Partial
+- [x] Template compliance recalculated to ~95%
+- [x] No existing content removed
+- [x] All 11 open questions tracked in §14.3 and `cas-open-questions.md`
+
+The upgrade is complete. Here's a summary of what was done:
+
+**`srv_cas-spec.md`** upgraded from ~92% → ~95% TPL-SVC v1.0.0 compliance (~488 → ~2,040 lines).
+
+**Major additions:**
+- **§3**: State Descriptions/Allowed Transitions tables for Case; SessionLink collection constraints; §3.1 Conceptual Overview; §3.5 Shared Types
+- **§4**: Full detailed rule definitions for BR-001–003; field-level and cross-field validation tables; reference data dependencies
+- **§5**: Business logic placement table; Actor/Preconditions/Main Flow/Postconditions for all 6 use cases; sequence diagrams; cross-domain auto-link workflow
+- **§6**: Full JSON request/response bodies for all 6 endpoints; CloseCase and LinkSession as business operations; OpenAPI ref
+- **§7**: Architecture pattern narrative; event detail blocks with payloads/envelopes for all 5 published events; queue config + DLQ for both consumed events; flow diagrams; integration points summary
+- **§8**: Column definitions for all 3 tables (including `custom_fields JSONB` + GIN index on `cas_case`, `cas_outbox_events`); reference data dependencies
+- **§9–10**: Data classification table; GDPR controls; RTO/RPO; failure scenarios; scalability; maintainability/alerting
+- **§11–12**: Full feature dependency register + BFF hints; all 5 extension point types documented
+- **§13–14**: Legacy migration framework; 5 decisions documented; 11 open questions; 16 ADR references
+- **§15**: Glossary expanded; References; Status Output Requirements
+
+**Output artifacts:** `status/cas-changelog.md` and `status/cas-open-questions.md` written.

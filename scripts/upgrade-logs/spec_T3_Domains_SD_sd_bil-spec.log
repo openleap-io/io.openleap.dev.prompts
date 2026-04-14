@@ -1,0 +1,26 @@
+All 16 sections (§0–§15) plus the preamble are present. The spec grew from 605 lines to **2,913 lines**, well above the expected 1,200–1,500 line range — reflecting the depth of billing domain content.
+
+**Summary of what was done:**
+
+**Gap Analysis:**
+The spec was at ~75% compliance, missing attribute tables (§3), detailed rule definitions (§4.2–4.4), full use case flows (§5), request/response bodies (§6), event envelopes (§7), column-level data model (§8), and all content in §11/§12/§13.
+
+**Upgrade results (605 → 2,913 lines, ~95% compliance):**
+
+| Section | What was added |
+|---------|----------------|
+| §3 | Attribute tables for all 5 entities; 6 enumeration tables; Money shared type with DB mapping |
+| §4 | Detailed definitions for all 7 BRs with error codes/examples; field + cross-field validation tables; reference data dependencies |
+| §5 | Business logic placement table; Actor/Preconditions/Main Flow for all 9 use cases; §5.4 Order-to-Cash saga + Rebate workflow |
+| §6 | Full HTTP request/response JSON for all 14+ endpoints; business operations section; OpenAPI reference |
+| §7 | Full event envelopes with payloads and known consumers; handler/queue/failure handling for all 6 consumed events; integration points summary |
+| §8 | Mermaid ER diagram; column definitions + indexes + retention for all 6 tables (including outbox) |
+| §9–10 | Data classification table; permission matrix; compliance controls; RTO/RPO; scalability; maintainability |
+| §11–12 | Full feature dependency register; all 5 extension point types (custom fields, events, rules, actions, hooks) |
+| §13 | SAP VBRK/VBRP/FPLA/FPLAN migration mapping; deprecation framework |
+| §14 | Consistency checks (7); 5 architectural decisions; 7 new open questions (Q-BIL-005 to Q-BIL-011) |
+
+**Output artifacts:**
+- `spec/T3_Domains/SD/sd_bil-spec.md` — upgraded in place
+- `spec/T3_Domains/SD/status/sd_bil-spec-changelog.md`
+- `spec/T3_Domains/SD/status/sd_bil-spec-open-questions.md` (11 questions total)

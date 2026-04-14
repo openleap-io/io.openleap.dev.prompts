@@ -1,0 +1,34 @@
+All 16 sections (§0–§15) are present and in order. Self-verification checklist passes. Here's the summary:
+
+---
+
+**Upgrade complete.** `sd_ana-spec.md` upgraded from ~70% to **~95% TPL-SVC v1.0.0 compliance** (2,261 lines).
+
+### What was done
+
+**Step 1–2 (Load + Gap Analysis):** Read template, target spec, registry, suite spec. Gap analysis presented above.
+
+**Steps 3–10 (Full Upgrade):**
+
+| Section | Key Additions |
+|---------|---------------|
+| Preamble | Guidelines Compliance block fully populated |
+| §1 | §1.4 Strategic Positioning + §1.5 Authoritative Sources + context diagram |
+| §3 | Attribute tables for all 6 read models (SalesPipelineEntry, SalesKPI, SalesForecast, TopEntity, ReturnAnalytics, EventCheckpoint); 5 enumerations; Money shared type |
+| §4 | Detailed rule definitions for all 5 BRs; field/cross-field validations; ref data dependencies |
+| §5 | §5.1 Logic Placement; full Actor/Pre/Flow/Post for all 6 UCs; §5.3 sequence diagram; §5.4 cross-domain workflow |
+| §6 | Full JSON request/response for all 9 endpoint groups; §6.4 OpenAPI reference |
+| §7 | Event envelopes + Known Consumers; consumed event handler table with queue/DLQ config; §7.5 integration points |
+| §8 | ER diagram; complete column/index/retention definitions for all 6 tables |
+| §9–§13 | Compliance, Availability/Scalability/Maintainability, Feature Dependencies, Extension Points (all 5 types), Migration (SAP SD-IS source mapping) |
+| §14 | 7 consistency checks; 3 decisions (incl. ADR-013 deviation); 8 open questions |
+| §15 | §15.3 Status Output Requirements added |
+
+**Output artifacts:**
+- `spec/T3_Domains/SD/sd_ana-spec.md` (in-place)
+- `spec/T3_Domains/SD/status/sd_ana-spec-changelog.md`
+- `spec/T3_Domains/SD/status/sd_ana-spec-open-questions.md`
+
+**New open questions raised:** Q-ANA-005 (cross-currency normalization), Q-ANA-006 (GDPR erasure propagation), Q-ANA-007 (feature spec IDs), Q-ANA-008 (extension endpoint standardisation).
+
+**Key domain design note:** sd.ana is documented as a pure CQRS read-model service — §3.3 uses "Read Model Definitions" rather than "Aggregate Definitions", with EventCheckpoint added as the idempotency store. The ADR-013 outbox deviation is recorded as D-ANA-001.

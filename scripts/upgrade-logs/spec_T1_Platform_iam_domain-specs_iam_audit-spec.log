@@ -1,0 +1,36 @@
+**Step 10d: Self-Verification Checklist**
+
+- [x] All 16 sections (§0–§15) present with correct heading hierarchy — confirmed in grep output
+- [x] Guidelines Compliance block populated — `## Specification Guidelines Compliance` at line 35
+- [x] Every aggregate has attribute tables — AuditEvent (line 331), AuditReport (line 463), SiemConfig (line 544), AuditAlertThreshold (line 614)
+- [x] Every `enum(...)` has a §3.4 enumeration table — 10+ enumerations in §3.4 (lines 648–806)
+- [x] Every business rule in §4.1 has a detailed definition in §4.2 — BR-AUD-001 through BR-AUD-008 all defined
+- [x] Every use case has Actor/Preconditions/Main Flow/Postconditions — UC-AUD-001 through UC-AUD-005 complete
+- [x] Every REST endpoint has request/response bodies — §6.2.1 through §6.2.5 with full JSON
+- [x] Every published event has envelope format and payload example — §7.2 (lines 1681–1777)
+- [x] Consumed events section present — §7.3 with rationale for REST ingest
+- [x] Every database table has column definitions and indexes — 5 tables in §8.3 (lines 1940–2137)
+- [x] Extension points §12 covers all 5 types — §12.2–12.6 (custom fields, events, rules, actions, hooks)
+- [x] Extensible aggregates (AuditReport, SiemConfig) noted with `custom_fields JSONB` in §12.2
+- [x] Consistency checks in §14.1 filled with Pass/Fail — 7 checks, all Pass
+- [x] Template compliance recalculated — ~95% (16/16 sections with substantive content)
+- [x] No existing content removed — all original endpoints, rules, events preserved
+- [x] All OPEN QUESTION entries tracked in §14.3 — Q-AUD-001 through Q-AUD-005
+
+---
+
+The upgrade is complete. Here's a summary of what was done:
+
+**`iam_audit-spec.md`** upgraded from ~195 lines (~30% actual compliance) to **2,671 lines (~95% compliance)**.
+
+**Major additions across all 16 sections:**
+
+- **§3 Domain Model** — 4 aggregates fully specified (AuditEvent, AuditReport, SiemConfig, AuditAlertThreshold) with attribute tables, lifecycle state machines, 10+ enumerations, and shared types. Identified `AuditAlertThreshold` as the 4th aggregate (implied by the published event but not previously modelled).
+- **§4 Business Rules** — 8 rules (BR-AUD-001 through BR-AUD-008) covering immutability, required fields, SOX/GDPR retention, PII export authorization, SIEM activation gate, alert debounce, date range limits, and link expiry.
+- **§5 Use Cases** — 5 canonical use cases with Actor/Preconditions/Main Flow; documented the architectural decision that audit ingest uses REST rather than events (DEC-AUD-001).
+- **§6–§8** — Full request/response bodies, event envelopes with payloads, 5 PostgreSQL table definitions with indexes and monthly range partitioning strategy for `iam_audit_events`.
+- **§9–§10** — PII classification (principalName, sourceIp, userAgent as GDPR personal data), GDPR Art. 17 erasure exception documented, SOX 7-year retention.
+- **§12** — All 5 extension types; AuditEvent deliberately NOT extensible (immutability constraint documented).
+- **§14** — 5 open questions (Q-AUD-001 through Q-AUD-005), 5 documented decisions, 7 consistency checks.
+
+**Status artifacts** written to `status/spec-changelog.md` and `status/spec-open-questions.md`.

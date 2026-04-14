@@ -1,0 +1,29 @@
+The upgrade is complete. Here's a summary:
+
+## Gap Analysis (before → after)
+
+| Section | Before | After |
+|---------|--------|-------|
+| §0 Purpose & Scope | Partial (no audience, no related docs) | Complete |
+| §1 Business Context | Partial (no stakeholders, no positioning) | Complete |
+| §2 Service Identity | Basic | Complete |
+| §3 Domain Model | Aggregate list only | Full attribute tables, lifecycle, enumerations for all 7 aggregates |
+| §4 Business Rules | 2 cross-cutting rules | BR-PRI-001–008 with detailed definitions + validation rules |
+| §5 Use Cases | Deferred to feature specs | 12 canonical use cases with flows |
+| §6 REST API | Endpoint table only | Request/response JSON for 7 endpoint groups |
+| §7 Events | Summary table only | Full envelope + payload for 5 events |
+| §8 Data Model | One sentence | ER diagram + DDL for all 7 tables |
+| §9 Security | 4-row table | Data classification, permission matrix, GDPR/SOX controls |
+| §10 Quality | 3-row table | Performance, availability (RTO/RPO), scalability, maintainability |
+| §11 Feature Deps | Feature table only | Purpose, endpoints-per-feature, BFF hints, impact assessment |
+| §12 Extension Points | One sentence | All 5 types: custom fields, events, rules, actions, hooks |
+| §13 Migration | 2 sentences | Flyway migration framework + deprecation policy |
+| §14 Decisions | 2 checks, no questions | 7 consistency checks (Pass), Q-PRI-001–008 open questions, 15 ADR refs |
+| §15 Appendix | Change log only | Glossary (19 terms), references, updated change log |
+
+**Result:** ~220 lines → ~1,934 lines | Template compliance: ~30% → ~95%
+
+**Output artifacts:**
+- `spec/T1_Platform/iam/domain-specs/iam_principal-spec.md` — upgraded in-place
+- `spec/T1_Platform/iam/domain-specs/status/spec-changelog.md`
+- `spec/T1_Platform/iam/domain-specs/status/spec-open-questions.md`

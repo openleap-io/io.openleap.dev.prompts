@@ -1,0 +1,31 @@
+All three output artifacts are written. Here's the summary:
+
+---
+
+## Gap Analysis (before upgrade)
+
+The target spec was a 22-line migration stub with 0% content compliance. Everything was built from scratch.
+
+## What Was Written
+
+### `param_ref-spec.md` (~1,500 lines, ~95% compliance)
+
+**Domain:** `param-ref-svc` — the authoritative source for all controlled vocabularies (reference data catalogs) across the platform. SAP equivalent: DDIC domains, SM30 table maintenance, T-tables (T005/TCURC/T002/T052).
+
+**Key content added:**
+- **§3 Domain Model:** `Catalog` aggregate root (12-attribute table, 2-state lifecycle) + `CatalogCode` child entity (12-attribute table, immutability invariants, validity period) + `CatalogRef` value object for cross-service contracts. 3 enumerations (CatalogScope, CatalogStatus, CodeStatus).
+- **§4 Business Rules:** 9 rules (BR-REF-001 through 009) — uniqueness, immutability, scope access control, deprecation irreversibility, validity coherence.
+- **§5 Use Cases:** 10 use cases including the machine-facing validate endpoint (UC-REF-008) and bulk import/export.
+- **§6 REST API:** 13 endpoints fully documented; validate endpoint returns `200 { valid, reason }` rather than error codes (D-REF-003).
+- **§7 Events:** 3 published events (catalog.created, catalog.updated with `changedCodes`, catalog.deprecated). Semi-thin deviation justified (D-REF-001).
+- **§8 Tables:** `ref_catalog`, `ref_catalog_code` (with `custom_fields JSONB` + GIN index), `ref_outbox_events`.
+- **§12 Extension Points:** `CatalogCode` is extensible; `Catalog` is not. All 5 extension types covered.
+- **§13 Migration:** SAP T005/TCURC/T002/T052 mapping; deprecated SAP codes migrate as `status=DEPRECATED`.
+
+**Decisions recorded (§14.2):** D-REF-001 through D-REF-005
+
+**Open questions raised (§14.3 + status file):** Q-REF-001 (ownerSuite registry), Q-REF-002 (PLATFORM multi-tenancy model), Q-REF-003 (auto-namespace registration), Q-REF-004 (tenant deletion), Q-REF-005 (PLATFORM catalog tenant_id), Q-REF-006 (port 8100 confirmation)
+
+### Status artifacts updated
+- `status/spec-changelog.md` — appended param.ref section
+- `status/spec-open-questions.md` — appended 6 detailed Q-REF entries

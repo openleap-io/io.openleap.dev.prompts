@@ -1,0 +1,21 @@
+All 16 sections + preamble present. The upgrade is complete:
+
+**`spec/T3_Domains/SD/sd_cdm-spec.md`** — 493 → **2,309 lines**, compliance **72% → ~95%**
+
+### Key additions
+
+| Section | What was added |
+|---------|---------------|
+| **Guidelines block** | Full Non-Negotiables / Source Priority / Style Guide |
+| **§1.4–1.5** | Strategic positioning (SAP FD/SD-BF-CM analog), service context with responsibilities, authoritative sources, and context diagram |
+| **§3.3–3.5** | Attribute tables for all 5 aggregates/entities, 7 enumeration tables (RiskCategory, ProfileStatus, CheckResult, etc.), Money value object |
+| **§4.2–4.4** | Detailed rule definitions for BR-CDM-001–006 with error codes, validation logic, examples; cross-field validations; ref data dependencies |
+| **§5.1–5.4** | Business logic placement table; Actor/Flow/Postcondition detail for all 6 use cases; 3 cross-domain workflow diagrams |
+| **§6.2–6.4** | 15 endpoints expanded to full request/response JSON; OpenAPI ref block |
+| **§7.1–7.5** | Full event envelopes for 5 published events; handler/queue/DLQ config for 6 consumed events; integration points summary |
+| **§8.2–8.4** | Mermaid ER diagram; full column/index/retention definitions for 6 tables incl. `custom_fields JSONB` on extensible aggregates |
+| **§9–§10** | Data classification, GDPR/SOX compliance, RTO/RPO, scalability, maintainability |
+| **§11–§13** | Feature dependency framework, all 5 extension point types, SAP migration mapping (KNKK/S066/S067) |
+| **§14** | 7 consistency checks (Pass/Fail), 4 decisions recorded, Q-CDM-005–007 added |
+
+**Output files:** `status/sd_cdm-spec-changelog.md` and `status/sd_cdm-spec-open-questions.md` written.

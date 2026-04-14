@@ -1,0 +1,26 @@
+All self-verification checks pass. Here is a summary of what was produced:
+
+---
+
+**Upgrade complete: `sd_agr-spec.md` v1.1 → v1.2**
+
+**Spec:** 509 lines → 2,749 lines | Compliance: ~72% → ~95%
+
+**Key additions per step:**
+
+| Step | What was added |
+|------|---------------|
+| §1 | Strategic Positioning (§1.4), Service Context sub-sections with responsibilities, authoritative sources, and context diagram (§1.5) |
+| §3 | Full attribute tables for all 6 aggregates/entities; state description + transition tables; domain events emitted per aggregate; 7 enumeration tables; Money shared type |
+| §4 | Detailed rule definitions for all 6 BRs with examples; field-level and cross-field validation tables; reference data dependencies |
+| §5 | Business Logic Placement table; Actor/Preconditions/Flow for all UCs; 4 new UCs (UC-AGR-005–008); Release Validation sequence diagram; Rebate Settlement Saga cross-domain workflow |
+| §6 | Full request/response JSON for all major endpoints; business operations section; OpenAPI reference |
+| §7 | Architecture Pattern; 6 fully detailed published events with envelopes; 4 consumed events with handler classes, queue config, and failure handling; event flow diagram; integration points summary |
+| §8 | ER diagram; 7 fully defined table definitions (columns, indexes, retention); reference data dependencies |
+| §9–10 | Data classification table; compliance controls (GDPR, SOX); availability/reliability, scalability, maintainability sub-sections |
+| §11–13 | Feature dependency register; all 5 extension point types; SAP migration source mapping |
+| §14 | Consistency checks (7 items, all Pass/Partial); 4 architecture decisions; 8 open questions (4 preserved, 4 new) |
+
+**Output artifacts:**
+- `spec/T3_Domains/SD/status/sd_agr-spec-changelog.md`
+- `spec/T3_Domains/SD/status/sd_agr-spec-open-questions.md`

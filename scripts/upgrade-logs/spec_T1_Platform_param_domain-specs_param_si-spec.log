@@ -1,0 +1,26 @@
+All done. Here's a summary of what was produced:
+
+---
+
+## Upgrade Complete: `param_si-spec.md`
+
+**Input:** 22-line migration stub pointing to a non-existent source file.
+**Output:** ~1,400-line full spec at ~95% TPL-SVC v1.0.0 compliance.
+
+### What was written
+
+**Domain:** `param-si-svc` — the SI Units of Measure Service (`bc:units-of-measure`).
+
+**Key content added:**
+- **§3 Domain Model:** Two aggregates (`Unit` with 22-attribute table, `Prefix` with 12-attribute table), `DimensionalSignature` and `Quantity` value objects, three enumerations (`UnitType`, `UnitStatus`, `PrefixStatus`). Full lifecycle state machines and invariants.
+- **§4 Business Rules:** 9 rules (BR-SI-001–009) covering symbol uniqueness, BASE/DERIVED immutability, dimensional compatibility for conversions, affine unit compound restriction, positive conversion factors, deprecation guards.
+- **§5–6 Use Cases & API:** 7 use cases with full Actor/Main Flow/Postconditions; 8 REST endpoints with JSON request/response examples including the dimensional-analysis-based `POST /conversions` endpoint.
+- **§7 Events:** 5 published events (`unit.created/updated/deprecated`, `prefix.created/deprecated`) with thin-event envelopes (ADR-011) and outbox pattern (ADR-013). No consumed events — `bc:units-of-measure` is independent.
+- **§8 Data Model:** 3 PostgreSQL tables (`si_unit` with JSONB `custom_fields` + GIN index, `si_prefix`, `si_outbox_events`) with full column definitions, indexes, and dual-key pattern (ADR-020).
+- **§12 Extensibility:** All 5 extension types — `Unit` is extensible, `Prefix` is not.
+- **§13 Migration:** SAP T006/T006A/T006B/T006D field mapping table.
+- **§14 Consistency Checks:** All 7 Pass.
+
+**6 open questions raised** (Q-SI-001–006): UnitType as enum vs. ref catalog, soft vs. hard delete, custom prefix API, extension endpoint ownership, seeding strategy, compound conversion support.
+
+**Status files updated:** `status/spec-changelog.md` and `status/spec-open-questions.md` both appended with `param.si` entries in the established multi-spec format.
